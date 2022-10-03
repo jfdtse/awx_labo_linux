@@ -1,0 +1,23 @@
+---
+# Mi primer playbook del curso
+- hosts: "{{ servers }}"
+  become: true
+  tasks:
+  - name: install apache
+    package:
+      name: httpd
+      state: present
+  - name: iniciar httpd y enabled
+    service:
+      name: httpd
+      state: started
+      enabled: yes
+  - name: creamos la pagina de inicio
+    file:
+      path: /var/www/html/index.html
+      state: touch
+  - name: añadimos contenido al fichero
+    copy:
+      content: "Hallo my friends"
+      dest: /var/www/html/index.html
+
