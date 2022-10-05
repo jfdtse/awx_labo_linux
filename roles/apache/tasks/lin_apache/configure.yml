@@ -1,0 +1,15 @@
+- name: pagina de bienvenida
+  copy:
+    src:  "{{ item.file }}"
+    dest: "/var/www/html/{{ item.dest }}"
+    remote_src: yes
+  with_items:
+  - { file: formacion_index.html, dest: index.html }
+  - { file: apache/prueba.txt, dest: prueba.txt }
+  notify: "restart apache service"
+
+- name: creamos fichero config
+  template:
+    src: apache_template.j2
+    dest: "/var/tmp"
+  notify: "restart apache service"

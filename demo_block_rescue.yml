@@ -1,0 +1,18 @@
+---
+- hosts: "{{ servers }}"
+  become: true
+  tasks:
+  - name: conectar al apache
+    block:
+      - uri:
+          url: "http://{{ servers }}"
+    rescue:
+      - package:
+          name: httpd
+          state: present
+      - service:
+          name: httpd
+          state: started
+    always:
+      - uri:
+          url: "http://{{ servers }}"

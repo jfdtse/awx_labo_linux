@@ -1,0 +1,6 @@
+---
+- hosts: "{{ servers }}"
+  tasks:
+  - name: contenido variable
+    debug:
+      msg: "Valor de la variable mivariable: {{ mivariable }} y el password es {{ password }}"

@@ -1,0 +1,7 @@
+---
+# handlers file for ./awx_labo_linux/roles/apache
+- name: reiniciamos servicio
+  service:
+    name: "{{ apache_service }}"
+    state: restarted
+  listen: "restart apache service"
